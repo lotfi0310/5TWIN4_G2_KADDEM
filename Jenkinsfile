@@ -19,6 +19,13 @@ pipeline {
                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=eya'
                     }
                 }
+
+
+             stage('Test Unit') {
+                    steps {
+                        sh 'mvn test'
+                    }
+                }
     }
 
     post {
