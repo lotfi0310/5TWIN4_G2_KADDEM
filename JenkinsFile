@@ -13,12 +13,13 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
+         stage('SonarQube Analysis') {
+                        steps {
+                            sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sarra'
+                        }
+                    }
     }
-    stage('SonarQube Analysis') {
-                steps {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sarra'
-                }
-            }
+
 
     post {
         success {
