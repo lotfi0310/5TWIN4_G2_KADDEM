@@ -13,6 +13,11 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
+        stage('Test with Maven') {
+                               steps {
+                                       sh 'mvn test'
+                                     }
+                                 }
 
         stage('SonarQube Analysis') {
              steps {
