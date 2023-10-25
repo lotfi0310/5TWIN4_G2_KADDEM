@@ -27,8 +27,13 @@ pipeline {
                             }
 stage('Deploy to Nexus') {
             steps {
-                sh 'mvn deploy -DskipTests'
-            }
+                   script {
+                       def mavenHome = tool 'Maven'
+                       def mavenSettings = readFile "${mavenHome}/conf/settings.xml"
+                       def mavenCommand = "${mavenHome}/bin/mvn"
+                       sh "${mavenCommand} -s ${mavenSettings} deploy -DskipTests"
+                   }
+               }
         }
     }
 
