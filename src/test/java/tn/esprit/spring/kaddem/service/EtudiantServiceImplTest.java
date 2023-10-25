@@ -63,8 +63,7 @@ public class EtudiantServiceImplTest {
         assertEquals(etudiant, result);
     }
 
-    // Ajoutez d'autres tests pour les autres méthodes de EtudiantServiceImpl
-    // en suivant un schéma similaire.
+
 
 }
 
