@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                https://github.com/lotfi0310/5TWIN4_G2_KADDEM.git
             }
         }
 
