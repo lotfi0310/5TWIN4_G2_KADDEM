@@ -52,7 +52,7 @@
     <distributionManagement>
         <repository>
             <id>deploymentRepo</id>
-            <name>Releases</name>
+            <name>Nexus deploy </name>
             <url>http://localhost:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
