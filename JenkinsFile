@@ -18,6 +18,12 @@ pipeline {
                             sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sarra'
                         }
                     }
+
+                    stage('Test Unit') {
+                                steps {
+                                    sh 'mvn test'
+                                }
+                            }
     }
 
 
