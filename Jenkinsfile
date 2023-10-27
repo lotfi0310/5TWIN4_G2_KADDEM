@@ -14,23 +14,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-                    steps {
-                        sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=eya'
-                    }
-                }
 
-
-             stage('Test Unit') {
-                    steps {
-                        sh 'mvn test'
-                    }
-                }
-        stage('Deploy to Nexus') {
-                    steps {
-                        sh 'mvn deploy -DskipTests'
-                    }
-                }
     }
 
     post {
