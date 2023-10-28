@@ -40,8 +40,8 @@ return  u;
     }
 
     public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement){
-        Universite u= universiteRepository.findById(idUniversite).orElse(null);
-        Departement d= departementRepository.findById(idDepartement).orElse(null);
+        Universite u= universiteRepository.findById(idUniversite).get();
+        Departement d= departementRepository.findById(idDepartement).get();
         u.getDepartements().add(d);
         universiteRepository.save(u);
     }
