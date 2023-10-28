@@ -15,10 +15,10 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-                    steps {
-                        sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=eya'
-                    }
-                }
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=eya'
+            }
+        }
 
 
 
