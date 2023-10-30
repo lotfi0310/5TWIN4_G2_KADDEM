@@ -40,29 +40,22 @@ pipeline {
                              sh 'mvn deploy -DskipTests'
                          }
                      }
-                stage('Docker image') {
+                stage('building image') {
                                     steps {
                                         sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
                                     }
                                 }
-                 stage(' DockerHub') {
-                             steps {
-                                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                                     sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
-                                 }
-                                 sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
-                             }
 
-                              stage('docker-compose') {
-                                   steps {
+                           stage('docker-compose') {
+                                                steps {
 
-                                    sh 'docker compose up -d'
+                                                  sh 'docker compose up -d'
 
-                                     echo 'docker-compose up '
-                                                         }
-                                   }
+                                                  echo 'docker-compose'
+                                                       }
+                                                   }
 
-}
+
 }
     post {
         success {
