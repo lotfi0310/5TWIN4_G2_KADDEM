@@ -53,7 +53,7 @@
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus deploy </name>
-            <url>http://localhost:8081/repository/maven-snapshots/</url>
+            <url>http://192.168.56.10:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
     <build>
