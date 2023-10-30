@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+
         DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
         DOCKER_IMAGE_TAG = 'v1'
     }
