@@ -5,7 +5,7 @@ volumes:
   #--------------------------------services----------------------------------------
 services:
   khaddemservice:
-    image: dorra22/springkhaddem
+    image: dorra22/springkhaddem:v3
     restart: always
     depends_on:
       - mysqlkhaddem
