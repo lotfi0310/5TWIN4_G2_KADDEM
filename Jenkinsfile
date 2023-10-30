@@ -51,7 +51,7 @@ stage('Deploy to Nexus') {
                stage('Run Spring && MySQL Containers') {
                      steps {
 
-                       sh 'docker-compose up -d'
+                       sh 'docker compose up -d'
 
                        echo 'Run Spring && MySQL Containers'
                             }
