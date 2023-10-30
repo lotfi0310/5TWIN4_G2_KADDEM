@@ -3,7 +3,7 @@ pipeline {
     environment {
 
         DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
-        DOCKER_IMAGE_TAG = 'v1'
+        DOCKER_IMAGE_TAG = 'v2'
     }
     stages {
         stage('Checkout') {
@@ -40,6 +40,13 @@ stage('Deploy to Nexus') {
                         sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
                     }
                 }
+              stage('push  to dockerhub') {
+                          steps {
+                              withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                                  sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                              }
+                              sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
+                          }
     }
 
     post {
