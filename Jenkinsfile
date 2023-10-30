@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
+        DOCKER_IMAGE_TAG = 'v1'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -30,6 +34,12 @@ stage('Deploy to Nexus') {
                 sh 'mvn deploy -DskipTests'
             }
         }
+
+          stage('building image') {
+                    steps {
+                        sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile .'
+                    }
+                }
     }
 
     post {
