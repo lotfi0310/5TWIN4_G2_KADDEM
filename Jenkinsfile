@@ -3,7 +3,7 @@ pipeline {
     environment {
 
         DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
-        DOCKER_IMAGE_TAG = 'v2'
+        DOCKER_IMAGE_TAG = 'v3'
     }
     stages {
         stage('Checkout') {
@@ -48,6 +48,14 @@ stage('Deploy to Nexus') {
                               sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
                           }
     }
+               stage('Run Spring && MySQL Containers') {
+                     steps {
+
+                       sh 'docker-compose up -d'
+
+                       echo 'Run Spring && MySQL Containers'
+                            }
+                        }
  }
     post {
         success {
