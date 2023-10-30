@@ -1,6 +1,10 @@
 pipeline {
     agent any
+   environment {
 
+        DOCKER_IMAGE_NAME = 'lotfilouiz-5TWIN4-G2-kaddem'
+        DOCKER_IMAGE_TAG = 'v1'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -29,6 +33,13 @@ pipeline {
                     sh 'mvn deploy -DskipTests=true'
                          }
                      }
+        stage('building image')
+        {
+             { steps {
+             sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+                      }
+             }
+        }
     }
 
     post {
