@@ -3,7 +3,7 @@ pipeline {
 
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials') // Configure your DockerHub credentials in Jenkins
+
         DOCKER_IMAGE_NAME = 'eyakhechine/kaddemproject'
         DOCKER_IMAGE_TAG = 'latest'
     }
@@ -40,14 +40,11 @@ pipeline {
                              sh 'mvn deploy -DskipTests'
                          }
                      }
-                       stage('Push Spring Boot Image to DockerHub') {
-                                 steps {
-                                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'eyakhechine', passwordVariable: 'college159')]) {
-                                         sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
-                                     }
-                                     sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
-                                 }
-                             }
+                stage('building image') {
+                                    steps {
+                                        sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile .'
+                                    }
+                                }
 
 }
     post {
