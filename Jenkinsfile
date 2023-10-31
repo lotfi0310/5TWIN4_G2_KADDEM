@@ -17,7 +17,7 @@ pipeline {
                                        sh 'mvn test'
                                      }
                                  }
-
+    }
     post {
         success {
             echo 'Build successfully'
@@ -27,4 +27,3 @@ pipeline {
         }
     }
     }
-}
