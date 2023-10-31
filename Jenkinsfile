@@ -59,7 +59,6 @@ pipeline {
                                         }
                                     }
              }
-    }
 
     post {
         success {
@@ -69,4 +68,4 @@ pipeline {
             echo 'failed '
         }
     }
-}
+    }
