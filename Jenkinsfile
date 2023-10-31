@@ -43,11 +43,10 @@ pipeline {
         }
            stage('push  to dockerhub') {
                                   steps {
-                                      withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')])
                                        {
                                           sh "docker login -u lotfi0310 -p lotfidevops "
+                                          sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
                                       }
-                                      sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
                                   }
             }
              stage('Run Spring && MySQL Containers') {
