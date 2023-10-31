@@ -1,9 +1,8 @@
 pipeline {
     agent any
-   environment {
-
+    environment {
         DOCKER_IMAGE_NAME = 'lotfilouiz-5TWIN4-G2-kaddem'
-        DOCKER_IMAGE_TAG = 'v1'
+        DOCKER_IMAGE_TAG = 'v2'
     }
     stages {
         stage('Checkout') {
