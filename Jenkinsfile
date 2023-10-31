@@ -43,10 +43,10 @@ pipeline {
         }
            stage('push  to dockerhub') {
                                   steps {
-                                       {
+
                                           sh "docker login -u lotfi0310 -p lotfidevops "
                                           sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
-                                      }
+
                                   }
             }
              stage('Run Spring && MySQL Containers') {
