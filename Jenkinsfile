@@ -1,27 +1,28 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('GIT') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Build with Maven') {
+        stage('COMPILING') {
             steps {
                 sh 'mvn clean compile'
             }
         }
-        stage('Test with Maven') {
-                               steps {
-                                       sh 'mvn test'
-                                     }
-                                 }
-        stage('SonarQube Analysis') {
+
+        stage('SONARQUBE') {
                      steps {
                             sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=ahmed2000'
                            }
                      }
+       stage('JUNIT/MOCKITO') {
+                                      steps {
+                                              sh 'mvn test'
+                                            }
+                                        }
     }
     post {
         success {
