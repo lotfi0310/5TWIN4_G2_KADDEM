@@ -46,7 +46,7 @@ pipeline {
 
                              sh "docker login -u lotfi0310 -p lotfidevops"
                              sh "docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG lotfi0310/lotfilouiz-5twin4-g2-kaddem:$DOCKER_IMAGE_TAG"
-                             sh "docker push lotfi0310/lotfilouiz-5twin4-g2-kaddem:$DOCKER_IMAGE_TAG"
+                             sh "docker push -f lotfi0310/lotfilouiz-5twin4-g2-kaddem:$DOCKER_IMAGE_TAG"
                                   }
             }
              stage('Run Spring && MySQL Containers') {
