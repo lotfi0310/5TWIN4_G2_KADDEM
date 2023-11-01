@@ -18,14 +18,12 @@ pipeline {
                             sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sarra'
                         }
                     }
+                       stage('NEXUS') {
+                                                    steps {
+                                                        sh 'mvn deploy'
+                                                    }
+                                                }
 
-
-
-                    stage('NEXUS') {
-                                steps {
-                                    sh 'mvn deploy'
-                                }
-                            }
 
                     stage('Test Unit') {
                                 steps {
@@ -49,4 +47,3 @@ pipeline {
             echo 'fail'
         }
     }
-}
