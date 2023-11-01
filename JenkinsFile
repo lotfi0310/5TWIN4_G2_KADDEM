@@ -19,12 +19,26 @@ pipeline {
                         }
                     }
 
+
+
+                    stage('NEXUS') {
+                                steps {
+                                    sh 'mvn deploy'
+                                }
+                            }
+
                     stage('Test Unit') {
                                 steps {
                                     sh 'mvn test'
                                 }
                             }
     }
+                 stage('Test deploy') {
+                                    steps {
+                                        sh 'mvn deploy'
+                                    }
+                                }
+        }
 
 
     post {
