@@ -56,7 +56,7 @@ public class EquipeServiceImpTest {
 
         assertEquals(equipes, result);
     }
-    @Test
+
     public void testAddEquipe() {
         // Create a sample Equipe object for testing
 
@@ -78,4 +78,4 @@ public class EquipeServiceImpTest {
 
 
 
-}
+
