@@ -5,7 +5,7 @@ volumes:
   #--------------------------------services----------------------------------------
 services:
   Etudiantservice:
-    image: lotfilouiz-5twin4-g2-kaddem:v50
+    image: lotfilouiz-5twin4-g2-kaddem:v51
     restart: always
     depends_on:
       - mysqlkaddem
