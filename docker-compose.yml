@@ -43,5 +43,7 @@ services:
       DATA_SOURCE_NAME: root:dorra@(mysqlkhaddem:3306)/khaddem
     networks:
       - mynetwork
+    volumes:
+      - ~/.my.cnf:/root/.my.cnf
 networks:
   mynetwork:
