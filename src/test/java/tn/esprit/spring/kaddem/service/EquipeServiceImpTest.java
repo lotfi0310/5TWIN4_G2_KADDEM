@@ -57,22 +57,13 @@ public class EquipeServiceImpTest {
         assertEquals(equipes, result);
     }
 
+    @Test
     public void testAddEquipe() {
-        // Create a sample Equipe object for testing
+        Equipe equipe = new Equipe();
 
-        Equipe equipe = new Equipe(1, "Test Equipe", Niveau.EXPERT, null, null);
+        when(equipeRepository.save(equipe)).thenReturn(equipe);
 
-        // Mock the service method to return the sample Equipe
-        when(equipeService.addEquipe(equipe)).thenReturn(equipe);
-
-        // Call the controller method
-        Equipe result = equipeRepository.save(equipe);
-
-        // Verify that the service method was called with the correct Equipe object
-        verify(equipeService).addEquipe(equipe);
-
-        // Assert the result
-        assertEquals(equipe, result);
+        assertEquals(equipe, equipeService.addEquipe(equipe));
     }
 }
 
