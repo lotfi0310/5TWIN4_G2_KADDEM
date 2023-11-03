@@ -6,6 +6,31 @@ pipeline {
         DOCKER_IMAGE_TAG = 'v3'
     }
     stages {
+       stage('docker permit') {
+                steps {
+                    sh 'sudo chmod 666 /var/run/docker.sock'
+                }
+            }
+                stage('start sonar qube') {
+                            steps {
+                                sh 'docker start 3603a27d18e9'
+                            }
+                        }
+                           stage('start nexus') {
+                                                    steps {
+                                                        sh 'docker start 89f1de76c083'
+                                                    }
+                                                }
+                    stage('start prometheus') {
+                       steps {
+                               sh 'docker start 4419c69218a1'
+                               }
+                           }
+                            stage('start grafana') {
+                                             steps {
+                                                     sh 'docker start c4cbee127ab9'
+                                                     }
+                                                 }
         stage('Checkout') {
             steps {
                 checkout scm
