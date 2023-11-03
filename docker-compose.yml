@@ -29,6 +29,11 @@ services:
       MYSQL_DATABASE: khaddem
       MYSQL_ROOT_PASSWORD: dorra
 
-
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    environment:
+      - DATA_SOURCE_NAME=root:dorra@(mysql:3306)/
+    ports:
+      - "9104:9104"
 
 
