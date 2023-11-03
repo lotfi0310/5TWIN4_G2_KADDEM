@@ -1,0 +1,21 @@
+management:
+    endpoints:
+        web:
+            exposure:
+                include: [ "prometheus" ]
+server:
+    port: 8089
+    servlet:
+        context-path: /kaddem
+spring:
+    datasource:
+        password: ''
+        url: jdbc:mysql://localhost:3306/khaddem?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
