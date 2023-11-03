@@ -1,5 +1,11 @@
 version: "2.4"
+#-------------------------------- volumes----------------------------------------
+volumes:
+  db:
+
+  #--------------------------------services----------------------------------------
 services:
+
   khaddemservice:
     image: dorra22/springkhaddem:v3
     restart: always
@@ -8,11 +14,12 @@ services:
     ports:
       - 8089:8089
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlkhaddem:3306/khaddem?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlkhaddem:3306/khaddem?createDatabaseIfNotExist=true&userSSL=false&max_allowed_packet=15728640
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=dorra
     networks:
       - mynetwork
+    #-------------------------------- database ----------------------------------------
 
   mysqlkhaddem:
     container_name: mysqlkhaddem
@@ -27,7 +34,6 @@ services:
       MYSQL_ROOT_PASSWORD: dorra
     networks:
       - mynetwork
-
   mysql-exporter:
     image: prom/mysqld-exporter
     restart: always
@@ -37,7 +43,5 @@ services:
       DATA_SOURCE_NAME: root:dorra@(mysqlkhaddem:3306)/khaddem
     networks:
       - mynetwork
-
-
 networks:
   mynetwork:
