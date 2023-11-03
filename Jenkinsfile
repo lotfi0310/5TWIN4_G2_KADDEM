@@ -6,11 +6,7 @@ pipeline {
         DOCKER_IMAGE_TAG = 'v3'
     }
     stages {
-       stage('docker permit') {
-                steps {
-                    sh 'sudo chmod 666 /var/run/docker.sock'
-                }
-            }
+
                 stage('start sonar qube') {
                             steps {
                                 sh 'docker start 3603a27d18e9'
