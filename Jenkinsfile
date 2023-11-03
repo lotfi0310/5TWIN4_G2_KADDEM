@@ -22,26 +22,26 @@ pipeline {
                                      }
                                  }
 
-        stage('SonarQube Analysis') {
+        stage('lotfi SonarQube ') {
              steps {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                    }
              }
 
-        stage('Deploy to Nexus') {
+        stage('Deploy') {
              steps {
                     sh 'mvn deploy -DskipTests=true'
                          }
                      }
 
-        stage('building image')
+        stage('building docker image')
         {
              steps {
                 sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
                       }
 
         }
-           stage('push  to dockerhub') {
+           stage('dockerhub') {
                                   steps {
 
                              sh "docker login -u lotfi0310 -p lotfidevops"
