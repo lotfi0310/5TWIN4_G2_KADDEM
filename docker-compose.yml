@@ -40,7 +40,7 @@ services:
     volumes:
       - /home/vagrant/.my.cnf
     environment:
-      - DATA_SOURCE_NAME="exporter:exporterpassword@(127.0.0.1:3306)/"
+      - DATA_SOURCE_NAME="root:dorra@(192.168.56.10:3306)/khaddem"
       - collect.info_schema.processlist
       - collect.info_schema.innodb_metrics
       - collect.info_schema.tablestats
