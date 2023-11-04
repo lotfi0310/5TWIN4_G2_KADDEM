@@ -31,10 +31,14 @@ services:
       MYSQL_ROOT_PASSWORD: dorra
 
   mysql-exporter:
-    image: prom/mysqld-exporter
+    image: quay.io/prometheus/mysqld-exporter
     container_name: mysql-exporter
+    restart: unless-stopped
     ports:
       - 9104:9104
+    command:
+      - "--mysqld.username=root:dorra"
+      - "--mysqld.address=mysqlkhaddem:3306"
     environment:
       - DATA_SOURCE_NAME='root:dorra@tcp(mysqlkhaddem:3306)/khaddem'
       - collect.info_schema.tablestats=true
