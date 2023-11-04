@@ -22,13 +22,12 @@ services:
 
   mysqlkhaddem:
     container_name: mysqlkhaddem
-    image: mysql
+    image: mysql:latest
     restart: always
-    volumes:
-      - db:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
+      MYSQL_USER : root
       MYSQL_DATABASE: khaddem
       MYSQL_ROOT_PASSWORD: dorra
 
@@ -38,14 +37,20 @@ services:
     ports:
       - 9104:9104
     volumes:
-      - /home/vagrant/.my.cnf
+      - ./mysql-exporter/.my.cnf:/root/.my.cnf
     environment:
-      - DATA_SOURCE_NAME="root:dorra@(192.168.56.10:3306)/khaddem"
-      - collect.info_schema.processlist
-      - collect.info_schema.innodb_metrics
-      - collect.info_schema.tablestats
-      - collect.info_schema.tables
-      - collect.info_schema.userstats
-      - collect.engine_innodb_status
+      - DATA_SOURCE_NAME='root:dorra@(mysqlkhaddem:9104)/khaddem'
+      - collect.info_schema.tablestats=true
+      - collect.info_schema.userstats=true
+      - collect.info_schema.query_response_time=true
+      - collect.auto_increment.columns=true
+      - collect.binlog_size=true
+      - collect.perf_schema.eventsstatements=true
+      - collect.perf_schema.eventswaits=true
+      - collect.perf_schema.file_events=true
+      - collect.perf_schema.indexiowaits=true
+      - collect.perf_schema.tableiowaits=true
+      - collect.perf_schema.tablelocks=true
     depends_on:
       - mysqlkhaddem
+
