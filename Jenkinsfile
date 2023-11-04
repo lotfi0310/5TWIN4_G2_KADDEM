@@ -28,11 +28,6 @@ pipeline {
                    }
              }
 
-        stage('Deploy') {
-             steps {
-                    sh 'mvn deploy -DskipTests=true'
-                         }
-                     }
 
         stage('building docker image')
         {
@@ -41,10 +36,10 @@ pipeline {
                       }
 
         }
-       stage('Deploy  in private repository Docker Image to Nexus') {
+       stage('Deploy artifact in private repository  Nexus') {
                steps {
-                       sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
-                       sh 'docker push http://localhost:8081/repository/kaddemlotfi/$DOCKER_IMAGE_TAG'
+                    sh 'mvn deploy -DskipTests=true'
+
                }
            }
            stage('dockerhub') {
