@@ -14,29 +14,30 @@ pipeline {
             }
         }
          stage('SonarQube Analysis') {
-                        steps {
-                            sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sarra'
-                        }
-                    }
-                    stage('Test Unit') {
-                                                    steps {
-                                                        sh 'mvn test'
-                                                    }
-                                                }
-                       stage('NEXUS') {
-                                                    steps {
-                                                        sh 'mvn deploy'
-                                                    }
-                                                }
+               steps {
+              sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sarra'
+               }
+            }
+        stage('Test Unit') {
+          steps {
+             sh 'mvn test'
+         }
+         }
+
+       stage('NEXUS') {
+         sh 'mvn deploy'
+              }
+         }
+        stage('building image') {
+        steps {
+           sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+
+              }
+
+           }
 
 
 
-
-                 stage('Test deploy') {
-                                    steps {
-                                        sh 'mvn deploy'
-                                    }
-                                }
         }
 
 
