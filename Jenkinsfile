@@ -28,6 +28,15 @@ pipeline {
                            sh 'mvn deploy -DskipTests=true'
                                 }
                          }
+
+
+         stage('Docker images')
+                 {
+                      steps {
+                         sh 'docker build -t kaddemImage:v1 -f Dockerfile ./'
+                               }
+
+                 }
     }
     post {
         success {
