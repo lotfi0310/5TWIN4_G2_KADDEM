@@ -33,7 +33,7 @@ pipeline {
          stage('Docker images')
                  {
                       steps {
-                         sh 'docker build -t kaddemImage:v1 -f Dockerfile ./'
+                         sh 'docker build -t kaddemimage:v1 -f Dockerfile ./'
                                }
 
                  }
