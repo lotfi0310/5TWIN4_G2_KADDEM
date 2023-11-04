@@ -45,7 +45,7 @@ pipeline {
                steps {
                    script {
                        sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
-                       sh 'docker push http://localhost:8081/repository/kaddemlotfi/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG'
+                       sh 'docker push http://localhost:8081/repository/kaddemlotfi/$DOCKER_IMAGE_TAG'
                    }
                }
            }
