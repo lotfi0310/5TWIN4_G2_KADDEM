@@ -36,7 +36,7 @@ services:
     ports:
       - 9104:9104
     volumes:
-      - /home/vagrant/.my.cnf:/root/.my.cnf
+      - ~/.my.cnf
     environment:
       - DATA_SOURCE_NAME='root:dorra@(mysqlkhaddem:9104)/khaddem'
       - collect.info_schema.tablestats=true
