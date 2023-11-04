@@ -41,7 +41,7 @@ pipeline {
                                            steps {
 
                                       sh "docker login -u ahmed1990909 -p ahmed2000"
-                                      sh "docker tag kaddemimage:v5 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v4"
+                                      sh "docker tag kaddemimage:v5 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage"
                                       sh "docker push  ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage"
                                            }
                      }
