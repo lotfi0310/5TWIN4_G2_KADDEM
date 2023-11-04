@@ -37,9 +37,9 @@ pipeline {
 
 stage('BUILD DOCKER IMAGE') {
     steps {
-        dir('app') {
-            sh 'docker build -t sarraharguem:v5 -f Dockerfile .'
-        }
+
+             sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+
     }
 }
 
