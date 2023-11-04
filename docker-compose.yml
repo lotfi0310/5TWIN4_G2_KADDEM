@@ -4,7 +4,7 @@ volumes:
   db:
 services:
   Equipeservice:
-    image: ahmedbenguebila-5twin4-g2-kaddem
+    image: ahmedbenguebila-5twin4-g2-kaddem:kaddemimage
     restart: always
     depends_on:
       - mysql
