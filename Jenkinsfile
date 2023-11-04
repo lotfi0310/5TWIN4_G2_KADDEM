@@ -40,9 +40,9 @@ pipeline {
           stage('dockerhub') {
                                            steps {
 
-                                      sh "docker login -u admin -p ahmed2000"
-                                      sh "docker tag kaddemimage:v2 lotfi0310/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
-                                      sh "docker push  admin/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
+                                      sh "docker login -u ahmed1990909 -p ahmed2000"
+                                      sh "docker tag kaddemimage:v2 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
+                                      sh "docker push  ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
                                            }
                      }
     }
