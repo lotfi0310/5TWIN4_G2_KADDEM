@@ -8,7 +8,7 @@ services:
     image: sarraharguem/kaddemproject:v5
     restart: always
     depends_on:
-      - mysql
+      - mysqlkaddem
     ports:
       - 8089:8089
     environment:
