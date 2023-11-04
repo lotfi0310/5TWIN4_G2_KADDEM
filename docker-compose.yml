@@ -17,6 +17,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlkhaddem:3306/khaddem?createDatabaseIfNotExist=true&userSSL=false&max_allowed_packet=15728640
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=dorra
+
     #-------------------------------- database ----------------------------------------
 
   mysqlkhaddem:
@@ -30,3 +31,21 @@ services:
     environment:
       MYSQL_DATABASE: khaddem
       MYSQL_ROOT_PASSWORD: dorra
+
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    container_name: mysql-exporter
+    ports:
+      - 9104:9104
+    volumes:
+      - /home/vagrant/.my.cnf
+    environment:
+      - DATA_SOURCE_NAME="exporter:exporterpassword@(127.0.0.1:3306)/"
+      - collect.info_schema.processlist
+      - collect.info_schema.innodb_metrics
+      - collect.info_schema.tablestats
+      - collect.info_schema.tables
+      - collect.info_schema.userstats
+      - collect.engine_innodb_status
+    depends_on:
+      - mysqlkhaddem
