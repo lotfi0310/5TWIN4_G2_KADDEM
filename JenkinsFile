@@ -1,5 +1,10 @@
 pipeline {
     agent any
+     environment {
+
+            DOCKER_IMAGE_NAME = 'sarraharguem/kaddemproject'
+            DOCKER_IMAGE_TAG = 'v5'
+        }
 
     stages {
         stage('Checkout') {
@@ -28,20 +33,14 @@ pipeline {
                                                         sh 'mvn deploy'
                                                     }
                                                 }
+   stage('docker-compose') {
+     steps {
+        sh 'docker compose up -d'
+           echo 'docker-compose'
+            }
+        }
 
 
-
-    stage('building image') {
-        steps {
-           sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
-
-              }
-           }
-                 stage('Test deploy') {
-                                    steps {
-                                        sh 'mvn deploy'
-                                    }
-                                }
         }
 
 
