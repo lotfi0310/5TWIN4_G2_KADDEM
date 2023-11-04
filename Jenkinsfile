@@ -36,12 +36,14 @@ pipeline {
                       }
 
         }
+
        stage('Deploy artifact in private repository  Nexus') {
                steps {
                     sh 'mvn deploy -DskipTests=true'
 
                }
            }
+
            stage('dockerhub') {
                                   steps {
 
