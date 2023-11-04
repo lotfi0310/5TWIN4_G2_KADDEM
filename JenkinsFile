@@ -35,12 +35,16 @@ pipeline {
                       }
                      }
 
+stage('BUILD DOCKER IMAGE') {
+    steps {
+        dir('app') {
+            sh 'docker build -t sarraharguem:v5 -f Dockerfile ./'
+        }
+    }
+}
 
-                      stage('BUILD DOCKER IMAGE') {
-                                   steps {
-                                       sh 'docker build -t sarraharguem:v5 -f Dockerfile ./'
-                                   }
-                               }
+
+
                     stage('Login & Push Image To HUB') {
                      steps {
                       withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
