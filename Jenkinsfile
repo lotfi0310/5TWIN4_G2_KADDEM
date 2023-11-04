@@ -55,13 +55,13 @@ pipeline {
                                                           }
                                     }
    stage('docker-compose') {
-                                                steps {
+         steps {
 
-                                                  sh 'docker compose up -d'
+                                                       sh 'docker compose up -d'
 
-                                                  echo 'docker-compose'
-                                                       }
-                                                   }
+                                                       echo 'docker-compose'
+                                                            }
+                                                        }
 }
     post {
         success {
