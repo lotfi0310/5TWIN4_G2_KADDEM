@@ -33,10 +33,18 @@ pipeline {
          stage('Docker images')
                  {
                       steps {
-                         sh 'docker build -t kaddemimage:v1 -f Dockerfile ./'
+                         sh 'docker build -t kaddemimage:v2 -f Dockerfile ./'
                                }
 
                  }
+          stage('dockerhub') {
+                                           steps {
+
+                                      sh "docker login -u admin -p ahmed2000"
+                                      sh "docker tag kaddemimage:v2 lotfi0310/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
+                                      sh "docker push  admin/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
+                                           }
+                     }
     }
     post {
         success {
