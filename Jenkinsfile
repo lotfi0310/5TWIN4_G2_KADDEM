@@ -33,7 +33,7 @@ pipeline {
          stage('Docker images')
                  {
                       steps {
-                         sh 'docker build -t kaddemimage:v9 -f Dockerfile ./'
+                         sh 'docker build -t kaddemimage:v10 -f Dockerfile ./'
                                }
 
                  }
@@ -41,7 +41,7 @@ pipeline {
                                            steps {
 
                                       sh "docker login -u ahmed1990909 -p ahmed2000"
-                                      sh "docker tag kaddemimage:v9 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage"
+                                      sh "docker tag kaddemimage:v10 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage"
                                       sh "docker push  ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage"
                                            }
                      }
@@ -49,8 +49,6 @@ pipeline {
                                            steps {
 
                                              sh 'docker compose up -d'
-
-                                             echo 'Run Spring && MySQL Containers'
                                                   }
                                               }
 
