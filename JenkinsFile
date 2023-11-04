@@ -25,28 +25,27 @@ pipeline {
                     }
 
                     stage('Test Unit') {
-                                                    steps {
-                                                        sh 'mvn test'
-                                                    }
-                                                }
-                       stage('NEXUS') {
-                                                    steps {
-                                                        sh 'mvn deploy'
-                                                    }
-                                                }
+                          steps {
+                                sh 'mvn test'
+                                }
+                                   }
+               stage('NEXUS') {
+                      steps {
+                          sh 'mvn deploy'
+                      }
+                     }
 
 
                       stage('BUILD DOCKER IMAGE') {
                                    steps {
-                                       sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+                                       sh 'docker build -t sarraharguem:v5 -f Dockerfile ./'
                                    }
                                }
                              stage('Login & Push Image To HUB') {
                                          steps {
-                                             withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                                                 sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
-                                             }
-                                             sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
+                                                   sh "docker login -u sarraharguem -p Sarra123*"
+                                                     sh "docker tag kaddemproject:v5 sarraharguem/kaddemproject"
+                                                    sh "docker push  sarraharguem/kaddemproject"
                                          }
                    }
    stage('docker-compose') {
