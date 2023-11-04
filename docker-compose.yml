@@ -5,7 +5,7 @@ volumes:
   #--------------------------------services----------------------------------------
 services:
   kaddem:
-    image: sarraharguem-5twin4-g2-kaddem:v5
+    image: sarraharguem/kaddemproject:v5
     restart: always
     depends_on:
       - mysqlkaddem
