@@ -41,6 +41,15 @@ pipeline {
                       }
 
         }
+       stage('Deploy  in private repository Docker Image to Nexus') {
+               steps {
+                   script {
+                       sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+                       sh 'docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG http://localhost:8081/Repository/kaddemlotfi/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG'
+                       sh 'docker push http://localhost:8081/Repository/kaddemlotfi/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG'
+                   }
+               }
+           }
            stage('dockerhub') {
                                   steps {
 
