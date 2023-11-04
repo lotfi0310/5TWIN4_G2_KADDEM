@@ -33,7 +33,7 @@ pipeline {
          stage('Docker images')
                  {
                       steps {
-                         sh 'docker build -t kaddemimage:v2 -f Dockerfile ./'
+                         sh 'docker build -t kaddemimage:v3 -f Dockerfile ./'
                                }
 
                  }
@@ -41,7 +41,7 @@ pipeline {
                                            steps {
 
                                       sh "docker login -u ahmed1990909 -p ahmed2000"
-                                      sh "docker tag kaddemimage:v2 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
+                                      sh "docker tag kaddemimage:v3 ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
                                       sh "docker push  ahmed1990909/ahmedbenguebila-5twin4-g2-kaddem:kaddemimage:v2"
                                            }
                      }
