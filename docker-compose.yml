@@ -4,7 +4,7 @@ volumes:
   db:
   #--------------------------------services----------------------------------------
 services:
-  Etudiantservice:
+  kaddem:
     image: sarraharguem/kaddemproject:v5
     restart: always
     depends_on:
