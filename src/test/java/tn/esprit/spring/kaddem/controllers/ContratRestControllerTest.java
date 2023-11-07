@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
@@ -20,6 +21,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class ContratRestControllerTest {
     @InjectMocks
     private ContratServiceImpl contratService;
@@ -51,16 +53,4 @@ class ContratRestControllerTest {
         assertEquals(expectedContrats, actualContrats);
     }
 
-    @Test
-    void addContrat() {
-
-    }
-
-    @Test
-    void removeContrat() {
-    }
-
-    @Test
-    void updateContrat() {
-    }
 }

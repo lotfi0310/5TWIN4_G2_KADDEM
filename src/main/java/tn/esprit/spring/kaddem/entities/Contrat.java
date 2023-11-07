@@ -1,5 +1,6 @@
 package tn.esprit.spring.kaddem.entities;
 
+import lombok.Builder;
 import lombok.ToString;
 
 import java.io.Serializable;
