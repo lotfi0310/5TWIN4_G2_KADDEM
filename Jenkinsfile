@@ -10,21 +10,21 @@ pipeline {
                 checkout scm
             }
         }
-        stage('compile and build with maven') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-              stage('Mockito/junit') {
-                           steps {
-                               sh 'mvn test'
-                           }
-                       }
-        stage('test with sonarQube Analysis') {
-            steps {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
-            }
-        }
+               stage('Build with Maven') {
+                   steps {
+                       sh 'mvn clean compile'
+                   }
+               }
+               stage('SonarQube Analysis') {
+                   steps {
+                       sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
+                   }
+               }
+               stage('Test with Maven') {
+                   steps {
+                       sh 'mvn test'
+                   }
+               }
 
         stage('Deploy to Nexus') {
             steps {
