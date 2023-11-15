@@ -1,31 +1,30 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'dorra22/dorrakadri-5twin4-g2-kaddem'
-        DOCKER_IMAGE_TAG = 'v1'
+        DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
+        DOCKER_IMAGE_TAG = 'v3'
     }
     stages {
-        stage('Checkout to branch') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-               stage('Build with Maven') {
-                   steps {
-                       sh 'mvn clean compile'
-                   }
-               }
-               stage('SonarQube Analysis') {
-                   steps {
-                       sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
-                   }
-               }
-               stage('Test with Maven') {
-                   steps {
-                       sh 'mvn test'
-                   }
-               }
-
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
+            }
+        }
+        stage('Test with Maven') {
+            steps {
+                sh 'mvn test'
+            }
+        }
         stage('Deploy to Nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
@@ -55,12 +54,12 @@ pipeline {
         success {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline Backend Success",
-            body: "Success on job : ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
+            body: "Welcome to DevOps project Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
         }
         failure {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline backend Failure",
-            body: "Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
+            body: "Welcome to DevOps project Backend : Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
         }
     }
 }
