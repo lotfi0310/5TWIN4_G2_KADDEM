@@ -5,7 +5,8 @@ pipeline {
             SONARQUBE_URL = 'http://192.168.33.10:9000'
             SONARQUBE_USERNAME = 'admin'
             SONARQUBE_PASSWORD = 'sonarqube'
-
+            DOCKER_IMAGE_NAME = 'oumaymahajri572/oumaymahajri-5twin4-g2-kaddem'
+            DOCKER_IMAGE_TAG = 'v1'
         }
 
     stages {
@@ -42,6 +43,13 @@ pipeline {
                             sh 'mvn deploy -DskipTests'
                         }
                     }
+        }
+        stage('Docker build image') {
+                            steps {
+                                script {
+                                    sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+                                }
+                            }
         }
 
     }
