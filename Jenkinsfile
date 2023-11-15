@@ -36,7 +36,7 @@ pipeline {
                             sh "mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_USERNAME} -Dsonar.password=${SONARQUBE_PASSWORD}"
                         }
                     }
-                }
+        }
         stage('Deployment') {
                     steps {
                         script {
@@ -44,12 +44,6 @@ pipeline {
                         }
                     }
         }
-        stage('Docker build image') {
-                    steps {
-                        script {
-                            sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
-                        }
-                    }
-                }
+       
     }
 }
