@@ -1,30 +1,31 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
-        DOCKER_IMAGE_TAG = 'v3'
+        DOCKER_IMAGE_NAME = 'dorra22/dorrakadri-5twin4-g2-kaddem'
+        DOCKER_IMAGE_TAG = 'v1'
     }
     stages {
-        stage('Checkout') {
+        stage('Checkout to branch') {
             steps {
                 checkout scm
             }
         }
-        stage('Build with Maven') {
+        stage('compile and build with maven') {
             steps {
                 sh 'mvn clean compile'
             }
         }
-        stage('SonarQube Analysis') {
+              stage('Mockito/junit') {
+                    steps {
+                        sh 'mvn test'
+                    }
+                }
+        stage('test with sonarQube Analysis') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
             }
         }
-        stage('Test with Maven') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+
         stage('Deploy to Nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
@@ -54,12 +55,12 @@ pipeline {
         success {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline Backend Success",
-            body: "Welcome to DevOps project Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
+            body: "Success on job : ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
         }
         failure {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline backend Failure",
-            body: "Welcome to DevOps project Backend : Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
+            body: "Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
         }
     }
 }
