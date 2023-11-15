@@ -32,11 +32,6 @@ class ContratRestControllerTest {
     @Mock
     private ContratRepository contratRepository;
 
-
-
-
-
-
     @Test
     public void testRetrieveAllContrats() {
 
