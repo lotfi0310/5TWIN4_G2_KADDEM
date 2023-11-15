@@ -1,3 +1,30 @@
+def notifySuccess() {
+    def imageUrl = 'https://www.weodeo.com/wp-content/uploads/2023/02/DevOps-scaled.webp'
+    def imageWidth = '800px'
+    def imageHeight = 'auto'
+
+    def consoleLog = readFile("${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log")
+    def logFile = "${WORKSPACE}/console.log"
+    writeFile file: logFile, text: consoleLog
+
+    emailext(
+        body: """
+            <html>
+                <body>
+                    <p>The Jenkins job runed successfuly.</p>
+                    <p>You can view the build at: <a href="${BUILD_URL}">${BUILD_URL}</a></p>
+                    <p><img src="${imageUrl}" alt="Your Image" width="${imageWidth}" height="${imageHeight}"></p>
+                    <p>Console Log is attached.</p>
+                </body>
+            </html>
+        """,
+        subject: "Jenkins Job - Success",
+        to: 'ahmed.benguebila@esprit.tn',
+        attachLog: true,  // Attach the log file
+        attachmentsPattern: logFile,  // Specify the file to attach
+        mimeType: 'text/html'
+    )
+}
 pipeline {
     agent any
     stages {
@@ -51,6 +78,16 @@ pipeline {
                                              sh 'docker compose up -d'
                                                   }
                                               }
+
+           stage('Email Notification') {
+                       steps {
+                           script {
+                               currentBuild.resultIsBetterOrEqualTo('SUCCESS') ? notifySuccess() : notifyFailure()
+                           }
+                       }
+                   }
+
+
 
     }
     post {
