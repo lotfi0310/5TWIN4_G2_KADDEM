@@ -55,9 +55,7 @@ pipeline {
         success {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline Backend Success",
-            body: " project kaddem  Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL},Changes included in this build: ${changelog}
-
-            "
+            body: " project kaddem  Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL},Changes included in this build: ${changelog}"
         }
         failure {
             mail to: "dora.kadri@esprit.tn",
