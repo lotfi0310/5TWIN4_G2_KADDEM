@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'dorra22/springkhaddem'
-        DOCKER_IMAGE_TAG = 'v3'
+        DOCKER_IMAGE_NAME = 'dorra22/dorrakadri-5twin4-g2-kaddem'
+        DOCKER_IMAGE_TAG = 'v1'
     }
     stages {
         stage('Checkout') {
@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean package -DskipTests'
             }
         }
             stage('Test with Maven') {
@@ -55,12 +55,15 @@ pipeline {
         success {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline Backend Success",
-            body: "Welcome to DevOps project Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
+            body: " project kaddem  Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL},
+                 Changes included in this build:
+                        ${changelog}
+            "
         }
         failure {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline backend Failure",
-            body: "Welcome to DevOps project Backend : Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
+            body: "project kaddem  Backend : Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
         }
     }
 }

@@ -5,14 +5,14 @@ import tn.esprit.spring.kaddem.entities.Departement;
 import java.util.List;
 
 public interface IDepartementService {
-    public List<Departement> retrieveAllDepartements();
+    List<Departement> retrieveAllDepartements();
 
-    public Departement addDepartement (Departement d);
+    Departement addDepartement(Departement d);
 
-    public   Departement updateDepartement (Departement d);
+    Departement updateDepartement(Departement d);
 
-    public  Departement retrieveDepartement (Integer idDepart);
+    Departement retrieveDepartement(Integer idDepart);
 
-    public  void deleteDepartement(Integer idDepartement);
+    void deleteDepartement(Integer idDepartement);
 
 }

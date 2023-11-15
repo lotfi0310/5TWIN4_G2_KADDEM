@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.spring.kaddem.entities.Universite;
 
 @Repository
-public interface UniversiteRepository extends CrudRepository<Universite,Integer> {
+public interface UniversiteRepository extends CrudRepository<Universite, Integer> {
 
 
 }
