@@ -12,9 +12,14 @@ pipeline {
         }
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean install'
             }
         }
+            stage('Test with Maven') {
+                    steps {
+                        sh 'mvn test'
+                    }
+                }
         stage('SonarQube Analysis') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
