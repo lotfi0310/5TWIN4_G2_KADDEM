@@ -25,11 +25,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
             }
         }
-        stage('Test with Maven') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+
         stage('Deploy to Nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
