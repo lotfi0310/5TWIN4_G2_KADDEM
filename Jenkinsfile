@@ -8,7 +8,7 @@ pipeline {
         }
 
     stages {
-        stage('Clonage') {
+        stage('Clone') {
             steps {
                 script {
                     git branch: 'OumaymaHAJRI-5TWIN4-G2', credentialsId: 'ssh', url: 'https://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@github.com/lotfi0310/5TWIN4_G2_KADDEM.git'
@@ -32,6 +32,13 @@ pipeline {
                     steps {
                         script {
                             sh "mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_USERNAME} -Dsonar.password=${SONARQUBE_PASSWORD}"
+                        }
+                    }
+                }
+        stage('Deployment') {
+                    steps {
+                        script {
+                            sh 'mvn deploy -DskipTests'
                         }
                     }
                 }
