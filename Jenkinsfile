@@ -62,10 +62,11 @@ pipeline {
                     }
         }
 
-        stage('Start Docker Containers') {
+        stage('Docker-compose') {
                     steps {
                         script {
-
+                            
+                            sh "docker compose down"
                             sh "docker compose up -d"
 
                         }
