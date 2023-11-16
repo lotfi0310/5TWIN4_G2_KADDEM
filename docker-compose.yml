@@ -4,7 +4,7 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_DATABASE: kaddemdb
+      MYSQL_DATABASE: kaddem
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
@@ -26,8 +26,7 @@ services:
             }'
     depends_on:
       - db
-    stdin_open: true
-    tty: true
+    
     networks:
       - network1
 volumes:
