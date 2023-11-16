@@ -29,6 +29,13 @@ pipeline {
                         sh 'mvn compile'
                     }
                 }
+        stage('SonarQube Analysis') {
+                    steps {
+                        script {
+                            sh "mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_USERNAME} -Dsonar.password=${SONARQUBE_PASSWORD}"
+                        }
+                    }
+        }
 
       
         stage('Deployment') {
