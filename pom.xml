@@ -10,7 +10,7 @@
     </parent>
     <groupId>tn.esprit.spring</groupId>
     <artifactId>5TWIN4-G2-kaddem</artifactId>
-    <version>1.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>5TWIN4-G2-kaddem</name>
     <description>kaddem</description>
     <properties>
