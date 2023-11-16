@@ -69,6 +69,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <finalName>5TWIN4-ADEOS-Kaddem</finalName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -78,6 +79,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>5TWIN4-ADEOS-Kaddem</finalName>
     </build>
 
 

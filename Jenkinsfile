@@ -4,7 +4,7 @@ pipeline {
 
     environment {
 
-        DOCKER_IMAGE_NAME = 'eyakhechine/kaddemproject'
+        DOCKER_IMAGE_NAME = 'eyakhechine/eyakhechine-5twin-g2-kaddem:v5'
         DOCKER_IMAGE_TAG = 'v5'
     }
 
