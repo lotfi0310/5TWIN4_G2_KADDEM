@@ -65,6 +65,62 @@ public class EquipeServiceImpTest {
 
         assertEquals(equipe, equipeService.addEquipe(equipe));
     }
+
+
+
+
+    @Test
+    public void testUpdateEquipe() {
+
+        Equipe equipe = new Equipe();
+        equipe.setIdEquipe(1);
+        equipe.setNomEquipe("test");
+
+        String nouveauNom = "test2";
+        equipe.setNomEquipe(nouveauNom);
+
+        // Def comportement du repos lors maj
+        when(equipeRepository.save(equipe)).thenReturn(equipe);
+
+        // Appeler la méthode de mise à jour du service
+        Equipe equipeMiseAJour = equipeService.updateEquipe(equipe);
+
+        assertEquals(nouveauNom, equipeMiseAJour.getNomEquipe());
+    }
+
+    @Test
+    public void testDeleteEquipe() {
+
+        Equipe equipe = new Equipe();
+        equipe.setIdEquipe(1); // Remplacez 1L par l'ID réel de l'équipe existante
+
+        doNothing().when(equipeRepository).deleteById(equipe.getIdEquipe());
+
+        equipeService.deleteEquipe(equipe.getIdEquipe());
+
+        verify(equipeRepository, times(1)).deleteById(equipe.getIdEquipe());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
