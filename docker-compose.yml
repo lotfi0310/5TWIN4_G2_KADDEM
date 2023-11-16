@@ -5,7 +5,7 @@ volumes:
 
 services:
   kadem:
-    image: eyakhechine/eyakhechine-5twin-g2-kaddem:v5
+    image: eyakhechine/eyakhechine-5twin-g2-kaddem:v6
     restart: always
     depends_on:
       - mysql
