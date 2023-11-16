@@ -21,7 +21,7 @@ services:
       - backendNetwork
 
   kaddem-backend:
-    image: oumaymahajri572/oumaymahajri-5twin4-g2-kaddem:v1
+    image: dorra22/dorrakadri-5twin4-g2-kaddem:v1
     restart: unless-stopped
     ports:
       - 8089:8089
