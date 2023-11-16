@@ -26,7 +26,11 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
             }
         }
-
+stage('publish test results') {
+            steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
         stage('deploy to nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
