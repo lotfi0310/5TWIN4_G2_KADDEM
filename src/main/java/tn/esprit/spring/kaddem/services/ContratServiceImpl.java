@@ -9,9 +9,11 @@ import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
@@ -68,30 +70,37 @@ public class ContratServiceImpl implements IContratService {
 
     public void retrieveAndUpdateStatusContrat() {
         List<Contrat> contrats = contratRepository.findAll();
-        List<Contrat> contrats15j = null;
-        List<Contrat> contratsAarchiver = null;
+        List<Contrat> contrats15j = new ArrayList<>();
+        List<Contrat> contratsAarchiver = new ArrayList<>();
+
+        Date dateSysteme = new Date();
+
         for (Contrat contrat : contrats) {
-            Date dateSysteme = new Date();
-            if (Boolean.FALSE.equals(contrat.getArchive())) {
+            if (!contrat.getArchive()) {
                 long difference_In_Time = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
-                long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+                long difference_In_Days = TimeUnit.DAYS.convert(difference_In_Time, TimeUnit.MILLISECONDS);
+
                 if (difference_In_Days == 15) {
                     contrats15j.add(contrat);
-                    log.info(" Contrat : " + contrat);
-                }
-                if (difference_In_Days == 0) {
+                    log.info("Contrat due in 15 days: " + contrat);
+                } else if (difference_In_Days == 0) {
                     contratsAarchiver.add(contrat);
                     contrat.setArchive(true);
                     contratRepository.save(contrat);
+                    log.info("Contrat archived: " + contrat);
                 }
             }
         }
+
     }
 
     public float getChiffreAffaireEntreDeuxDates(Date startDate, Date endDate) {
         float difference_In_Time = (float) endDate.getTime() - startDate.getTime();
         float difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
         float difference_In_months = difference_In_Days / 30;
+        System.out.println(difference_In_Time);
+        System.out.println(difference_In_Days);
+        System.out.println(difference_In_months);
         List<Contrat> contrats = contratRepository.findAll();
         float chiffreAffaireEntreDeuxDates = 0;
         for (Contrat contrat : contrats) {

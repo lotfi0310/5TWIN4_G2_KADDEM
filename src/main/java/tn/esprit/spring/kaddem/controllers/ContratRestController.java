@@ -64,8 +64,8 @@ public class ContratRestController {
         return contratService.nbContratsValides(startDate, endDate);
     }
 
-    //Only no-arg methods may be annotated with @Scheduled
-    @Scheduled(cron = "0 0 13 * * *")//(cron="0 0 13 * * ?")(fixedRate =21600)
+
+    @Scheduled(cron = "0 * * * * *")
     @PutMapping(value = "/majStatusContrat")
     public void majStatusContrat() {
 

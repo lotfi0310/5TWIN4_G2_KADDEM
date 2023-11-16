@@ -18,6 +18,7 @@ pipeline {
             stage('Junit/mockito') {
                     steps {
                         sh 'mvn test'
+                        sh 'mvn jacoco:report'
                     }
                 }
         stage('sonarqube') {
@@ -47,7 +48,7 @@ pipeline {
         stage('running spring and mySQL containers') {
             steps {
                 sh 'docker compose up -d'
-                echo 'Run Spring && MySQL Containers'
+                echo 'running spring and mySQL containers'
             }
         }
     }

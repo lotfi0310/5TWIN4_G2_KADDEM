@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ContratRepository extends CrudRepository<Contrat, Integer> {
-    @Query("SELECT count(c) FROM Contrat c where (c.archive=false) and ( ((c.dateDebutContrat BETWEEN :startDate AND :endDate)) or (c.dateFinContrat BETWEEN :startDate AND :endDate))")
+    @Query("SELECT count(c) FROM Contrat c where (c.archive=true) and ( ((c.dateDebutContrat BETWEEN :startDate AND :endDate)) or (c.dateFinContrat BETWEEN :startDate AND :endDate))")
     Integer getnbContratsValides(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     List<Contrat> findAll();

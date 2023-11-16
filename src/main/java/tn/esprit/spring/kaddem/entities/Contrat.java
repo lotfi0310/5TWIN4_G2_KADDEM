@@ -1,6 +1,7 @@
 package tn.esprit.spring.kaddem.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Contrat implements Serializable {
     private Boolean archive;
     private Integer montantContrat;
     @ManyToOne(cascade = CascadeType.ALL)
+
     private Etudiant etudiant;
 
     public Contrat() {
