@@ -16,26 +16,26 @@ pipeline {
             }
         }
 
-        stage('Build with Maven') {
+        stage('Maven Build') {
             steps {
                 sh 'mvn clean compile'
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube') {
                     steps {
                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=eya'
                     }
                 }
 
 
-             stage('Test Unit') {
+             stage('Test Unit Mockito') {
                     steps {
                         sh 'mvn test'
                     }
                 }
 
-             stage('Deploy to Nexus') {
+             stage(' Nexus Deployment') {
                          steps {
                              sh 'mvn deploy -DskipTests'
                          }
@@ -65,10 +65,16 @@ pipeline {
 }
     post {
         success {
-            echo 'Build successful'
-        }
+
+         mail subject: "[Integration Continue] ${env.JOB_NAME} - Compilation # ${env.BUILD_NUMBER} - Build has been fixed",
+                     body: "  pipeline réussi  ",
+                     from: 'Admin',
+                     to: 'khechineeya@gmail.com'
+
+             }
         failure {
-            echo 'fail'
-        }
+             echo 'Echec pipeline.'
+
+       }
     }
 }
