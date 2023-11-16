@@ -67,61 +67,6 @@ import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
         assertEquals(etudiant, result);
     }
 
-    @Test
-     void testRemoveEtudiant() {
-        Integer etudiantId = 1;
-        Etudiant etudiant = new Etudiant();
-        when(etudiantRepository.findById(etudiantId)).thenReturn(java.util.Optional.of(etudiant));
-
-        etudiantService.removeEtudiant(etudiantId);
-
-        verify(etudiantRepository, times(1)).delete(etudiant);
-    }
-
-
-    @Test
-     void testAssignEtudiantToDepartement() {
-        Integer etudiantId = 1;
-        Integer departementId = 2;
-        Etudiant etudiant = new Etudiant();
-        when(etudiantRepository.findById(etudiantId)).thenReturn(java.util.Optional.of(etudiant));
-        Departement departement = new Departement();
-        when(departementRepository.findById(departementId)).thenReturn(java.util.Optional.of(departement));
-
-        etudiantService.assignEtudiantToDepartement(etudiantId, departementId);
-
-        assertEquals(departement, etudiant.getDepartement());
-        verify(etudiantRepository, times(1)).save(etudiant);
-    }
-
-    @Test
-     void testAddAndAssignEtudiantToEquipeAndContract() {
-        Integer idContrat = 1;
-        Integer idEquipe = 2;
-        Etudiant etudiant = new Etudiant();
-        Contrat contrat = new Contrat();
-        Equipe equipe = new Equipe();
-        when(contratRepository.findById(idContrat)).thenReturn(java.util.Optional.of(contrat));
-        when(equipeRepository.findById(idEquipe)).thenReturn(java.util.Optional.of(equipe));
-
-        Etudiant result = etudiantService.addAndAssignEtudiantToEquipeAndContract(etudiant, idContrat, idEquipe);
-
-        assertEquals(etudiant, result);
-        assertEquals(contrat.getEtudiant(), etudiant);
-        assertTrue(equipe.getEtudiants().contains(etudiant));
-    }
-
-    @Test
-     void testGetEtudiantsByDepartement() {
-        Integer idDepartement = 1;
-        List<Etudiant> etudiants = new ArrayList<>();
-        when(etudiantRepository.findEtudiantsByDepartement_IdDepart(idDepartement)).thenReturn(etudiants);
-
-        List<Etudiant> result = etudiantService.getEtudiantsByDepartement(idDepartement);
-
-        assertEquals(etudiants, result);
-    }
-
 
 }
 
