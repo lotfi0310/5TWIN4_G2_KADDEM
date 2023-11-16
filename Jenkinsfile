@@ -60,7 +60,17 @@ pipeline {
                             sh "docker logout "
                         }
                     }
-                }
+        }
+
+        stage('Start Docker Containers') {
+                    steps {
+                        script {
+
+                            sh "docker compose up -d"
+
+                        }
+                    }
+        }
 
     }
 }
