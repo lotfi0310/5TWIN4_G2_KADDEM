@@ -10,28 +10,28 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build with Maven') {
+        stage('build project with Maven') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
         }
-            stage('Test with Maven') {
+            stage('Junit/mockito') {
                     steps {
                         sh 'mvn test'
                     }
                 }
-        stage('SonarQube Analysis') {
+        stage('sonarqube') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
             }
         }
 
-        stage('Deploy to Nexus') {
+        stage('deploy to nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
             }
         }
-        stage('building image') {
+        stage('building the image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
             }
@@ -44,7 +44,7 @@ pipeline {
                 sh "docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
             }
         }
-        stage('Run Spring && MySQL Containers') {
+        stage('running spring and mySQL containers') {
             steps {
                 sh 'docker compose up -d'
                 echo 'Run Spring && MySQL Containers'
@@ -55,12 +55,12 @@ pipeline {
         success {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline Backend Success",
-            body: " project kaddem  Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
+            body: " project kaddem  Backend : Success on job ${env.JOB_NAME}, Build Num: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
         }
         failure {
             mail to: "dora.kadri@esprit.tn",
             subject: "Pipeline backend Failure",
-            body: "project kaddem  Backend : Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
+            body: "project kaddem  Backend : Failure on job ${env.JOB_NAME}, Build Num: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
         }
     }
 }

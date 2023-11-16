@@ -113,10 +113,10 @@ class ContratServiceImplTest {
         Contrat contrat = new Contrat();
         contrat.setArchive(false);
 
-       Mockito.when(etudiantRepository.findByNomEAndPrenomE("John", "Doe")).thenReturn(etudiant);
+       Mockito.when(etudiantRepository.findByNomEAndPrenomE("dora", "kadri")).thenReturn(etudiant);
         Mockito.when(contratRepository.findByIdContrat(1)).thenReturn(contrat);
 
-        Contrat result = contratService.affectContratToEtudiant(1, "John", "Doe");
+        Contrat result = contratService.affectContratToEtudiant(1, "dora", "kadri");
 
 
         assertEquals(etudiant, contrat.getEtudiant());
@@ -125,7 +125,7 @@ class ContratServiceImplTest {
         Mockito.verify(contratRepository).save(contrat);
 
 
-        Mockito.verify(etudiantRepository).findByNomEAndPrenomE("John", "Doe");
+        Mockito.verify(etudiantRepository).findByNomEAndPrenomE("dora", "kadri");
 
     }
 
