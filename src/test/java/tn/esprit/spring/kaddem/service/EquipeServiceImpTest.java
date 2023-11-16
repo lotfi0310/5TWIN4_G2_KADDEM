@@ -3,6 +3,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -90,9 +91,10 @@ public class EquipeServiceImpTest {
 
     @Test
     public void testDeleteEquipe() {
-
         Equipe equipe = new Equipe();
-        equipe.setIdEquipe(1); // Remplacez 1L par l'ID réel de l'équipe existante
+        equipe.setIdEquipe(1);
+
+        when(equipeRepository.findById(equipe.getIdEquipe())).thenReturn(Optional.of(equipe));
 
         doNothing().when(equipeRepository).deleteById(equipe.getIdEquipe());
 
