@@ -52,5 +52,15 @@ pipeline {
                             }
         }
 
+        stage('Docker push image') {
+                    steps {
+                        script {
+                            sh "docker login -u oumaymahajri572 -p 213JFT8017"
+                            sh "docker push oumaymahajri572/oumaymahajri-5twin4-g2-kaddem:v1"
+                            sh "docker logout "
+                        }
+                    }
+                }
+
     }
 }
