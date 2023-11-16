@@ -23,9 +23,16 @@ pipeline {
                 }
         stage('sonarqube') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=dorra'
+            scripts{
+              withSonarQubeEnv(credentialsId: 'sonar-api') {
+                             sh 'mvn  sonar:sonar'
+                        }
+            }
+
+
             }
         }
+
 stage('publish test results') {
             steps {
                 junit '**/target/surefire-reports/TEST-*.xml'
