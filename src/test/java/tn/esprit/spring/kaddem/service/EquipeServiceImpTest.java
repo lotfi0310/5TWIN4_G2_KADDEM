@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import org.mockito.internal.matchers.Null;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.entities.Niveau;
@@ -89,19 +90,22 @@ public class EquipeServiceImpTest {
         assertEquals(nouveauNom, equipeMiseAJour.getNomEquipe());
     }
 
-    @Test
+
     public void testDeleteEquipe() {
         Equipe equipe = new Equipe();
         equipe.setIdEquipe(1);
 
+        // Simuler la méthode findById pour retourner l'équipe
         when(equipeRepository.findById(equipe.getIdEquipe())).thenReturn(Optional.of(equipe));
 
-        doNothing().when(equipeRepository).deleteById(equipe.getIdEquipe());
-
+        // Appeler la méthode de suppression du service
         equipeService.deleteEquipe(equipe.getIdEquipe());
 
+        // Vérifier que la méthode deleteById a été appelée avec le bon ID
         verify(equipeRepository, times(1)).deleteById(equipe.getIdEquipe());
     }
+
+
 
 
 
