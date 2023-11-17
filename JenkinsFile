@@ -3,7 +3,7 @@ pipeline {
      environment {
 
             DOCKER_IMAGE_NAME = 'sarraharguem/kaddemproject'
-            DOCKER_IMAGE_TAG = 'v8'
+            DOCKER_IMAGE_TAG = 'v9'
         }
 
     stages {
