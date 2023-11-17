@@ -31,7 +31,7 @@ public class DetailEquipeController {
 		return eServ.retrieveAllDetailEquipes();
 	}
 	
-	@PostMapping("/addDetailEquipe/{idEquipe}")
+	@PostMapping("/addDetailEquipe")
 	public DetailEquipe addDetailEquipe( @RequestBody DetailEquipe e) {
 		return eServ.addDetailEquipe(e);
 	}
