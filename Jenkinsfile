@@ -40,7 +40,7 @@ pipeline {
                              sh 'mvn deploy -DskipTests'
                          }
                      }
-                stage(' image') {
+                stage('building image') {
                         steps {
                   sh 'docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG -f Dockerfile ./'
                                     }
@@ -67,7 +67,7 @@ pipeline {
         success {
 
          mail subject: "[Integration Continue] ${env.JOB_NAME} - Compilation # ${env.BUILD_NUMBER} - Build has been fixed",
-                     body: "  pipeline réussie  ",
+                     body: "  pipeline réussi  ",
                      from: 'Admin',
                      to: 'khechineeya@gmail.com'
 
