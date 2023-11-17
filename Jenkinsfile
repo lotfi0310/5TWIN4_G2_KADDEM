@@ -29,6 +29,11 @@ pipeline {
                         sh 'mvn compile'
                     }
                 }
+        stage('Test unit Mockito') {
+                                    steps {
+                                        sh 'mvn test'
+                                    }
+        }
         stage('SonarQube Analysis') {
                     steps {
                         script {
