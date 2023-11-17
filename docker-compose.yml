@@ -7,22 +7,22 @@ services:
       MYSQL_DATABASE: kaddem
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-
+    
   spring:
     image: oumaymahajri572/oumaymahajri-5twin4-g2-kaddem:v1
     restart: always
     ports:
-      - 8089:8089
+      - "8089:8089"
     environment:
         - SPRING_DATASOURCE_URL=jdbc:mysql://dbkaddem:3306/kaddem?createDatabaseIfNotExist=true&userSSL=false&max_allowed_packet=15728640
         - SPRING_DATASOURCE_USERNAME=root
         - SPRING_DATASOURCE_PASSWORD=root
     depends_on:
-      - dbkaddem
-
-
+      - dbkaddem    
+     
 volumes:
-  db_data:
+  db_data: 
+
