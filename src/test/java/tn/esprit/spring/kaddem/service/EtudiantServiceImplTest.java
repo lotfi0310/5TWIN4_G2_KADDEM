@@ -67,6 +67,16 @@ import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
         assertEquals(etudiant, result);
     }
 
+    @Test
+    public void testRemoveEtudiant() {
+       Integer etudiantId = 1;
+       Etudiant etudiant = new Etudiant();
+       when(etudiantRepository.findById(etudiantId)).thenReturn(java.util.Optional.of(etudiant));
+
+       etudiantService.removeEtudiant(etudiantId);
+
+       verify(etudiantRepository, times(1)).delete(etudiant);
+    }
 
 }
 
